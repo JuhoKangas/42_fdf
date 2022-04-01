@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/03/31 13:12:12 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:30:52 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,12 @@ typedef struct s_coord
 	int		y1;
 	int		y2;
 }			t_coord;
+
+typedef struct s_program
+{
+	void	*mlx;
+	void	*win;
+}			t_program;
 
 int	rgb_to_int(double r, double g, double b);
 

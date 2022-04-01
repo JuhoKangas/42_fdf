@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/03/31 13:14:07 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:34:39 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,11 +59,10 @@ void	ft_dda(t_coord coord, void *mlx, void *win)
 
 int	main()
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-	int		win_x;
-	int		win_y;
-	t_coord coord;
+	t_program	ptr;
+	t_coord 	coord;
+	int			win_x;
+	int			win_y;
 
 	coord.x1 = 250;
 	coord.y1 = 500;
@@ -73,10 +72,10 @@ int	main()
 	win_x = 1000;
 	win_y = 1000;
 
-	mlx_ptr = mlx_init();
-	win_ptr = mlx_new_window(mlx_ptr, win_x, win_y, "window");
+	ptr.mlx = mlx_init();
+	ptr.win = mlx_new_window(ptr.mlx, win_x, win_y, "window");
 
-	ft_dda(coord, mlx_ptr, win_ptr);
+	ft_dda(coord, ptr.mlx, ptr.win);
 
-	mlx_loop(mlx_ptr);
+	mlx_loop(ptr.mlx);
 }
