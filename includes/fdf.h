@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/01 11:48:43 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/01 14:15:17 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct s_coord
 	int		x2;
 	int		y1;
 	int		y2;
+	float	delta_x;
+	float	delta_y;
 }			t_coord;
 
 typedef struct s_program

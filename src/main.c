@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/01 13:56:59 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/01 14:58:51 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,36 +24,32 @@ int rgb_to_int(double r, double g, double b)
 
 void	ft_dda(t_coord coord, void *mlx, void *win)
 {
-	float	dx;
-	float	dy;
 	int 	steps;
 	float	x_incr;
 	float	y_incr;
 	float	x;
 	float	y;
-	int		i;
 
-	dx = coord.x2 - coord.x1;
-	dy = coord.y2 - coord.y1;
+	coord.delta_x = coord.x2 - coord.x1;
+	coord.delta_y = coord.y2 - coord.y1;
 
-	if (ft_abs(dx) > ft_abs(dy))
-		steps = fabs(dx);
+	if (ft_abs(coord.delta_x) > ft_abs(coord.delta_y))
+		steps = fabs(coord.delta_x);
 	else
-		steps = fabs(dy);
+		steps = fabs(coord.delta_y);
 	
-	x_incr = dx / (float) steps;
-	y_incr = dy / (float) steps;
+	x_incr = coord.delta_x / (float) steps;
+	y_incr = coord.delta_y / (float) steps;
 
 	x = coord.x1;
 	y = coord.y1;
 
-	i = 0;
-	while (i <= steps)
+	while (steps)
 	{
-		mlx_pixel_put(mlx, win, x, y, 0xffffff);
+		mlx_pixel_put(mlx, win, x, y, rgb_to_int(1, 1, 1));
 		x += x_incr;
 		y += y_incr;
-		i++;
+		steps--;
 	}
 }
 
