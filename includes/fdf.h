@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/01 11:30:52 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/01 11:48:43 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_program
 	void	*win;
 }			t_program;
 
-int	rgb_to_int(double r, double g, double b);
+int		rgb_to_int(double r, double g, double b);
+int		mouse_hook(int button, int x, int y, t_program *param);
 
 #endif

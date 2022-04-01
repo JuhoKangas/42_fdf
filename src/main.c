@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/01 11:34:39 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/01 13:56:59 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int rgb_to_int(double r, double g, double b)
 
 void	ft_dda(t_coord coord, void *mlx, void *win)
 {
-	int		dx;
-	int		dy;
+	float	dx;
+	float	dy;
 	int 	steps;
 	float	x_incr;
 	float	y_incr;
@@ -37,9 +37,9 @@ void	ft_dda(t_coord coord, void *mlx, void *win)
 	dy = coord.y2 - coord.y1;
 
 	if (ft_abs(dx) > ft_abs(dy))
-		steps = dx;
+		steps = fabs(dx);
 	else
-		steps = dy;
+		steps = fabs(dy);
 	
 	x_incr = dx / (float) steps;
 	y_incr = dy / (float) steps;
@@ -57,17 +57,26 @@ void	ft_dda(t_coord coord, void *mlx, void *win)
 	}
 }
 
+int	mouse_hook(int button, int x, int y, t_program *param)
+{
+	t_coord 	coord;
+	coord.x1 = 500;
+	coord.y1 = 500;
+	coord.x2 = x;
+	coord.y2 = y;
+
+	ft_dda(coord, param->mlx, param->win);
+
+	(void)button;
+
+	return (0);
+}
+
 int	main()
 {
 	t_program	ptr;
-	t_coord 	coord;
 	int			win_x;
 	int			win_y;
-
-	coord.x1 = 250;
-	coord.y1 = 500;
-	coord.x2 = 600;
-	coord.y2 = 600;
 
 	win_x = 1000;
 	win_y = 1000;
@@ -75,7 +84,8 @@ int	main()
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, win_x, win_y, "window");
 
-	ft_dda(coord, ptr.mlx, ptr.win);
+
+	mlx_mouse_hook(ptr.win, mouse_hook, &ptr);
 
 	mlx_loop(ptr.mlx);
 }
