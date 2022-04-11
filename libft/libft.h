@@ -6,13 +6,16 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/03 12:56:10 by jkangas           #+#    #+#             */
-/*   Updated: 2021/12/08 19:47:44 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/11 18:57:09 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LIBFT_H
 # define LIBFT_H
+# define BUFF_SIZE 16
+# define FD_SIZE 256
 # include <string.h>
+# include <stdlib.h>
 
 typedef struct s_list
 {
@@ -84,5 +87,8 @@ int		ft_isupper(int c);
 int		ft_islower(int c);
 int		ft_abs(int n);
 int		ft_wordcount(const char *str, char c);
+int		get_next_line(const int fd, char **line);
+void	ft_free(void *str, size_t len);
+void	*ft_free_array(void **arr, size_t size);
 
 #endif
