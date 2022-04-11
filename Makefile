@@ -6,7 +6,7 @@
 #    By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/29 14:40:43 by jkangas           #+#    #+#              #
-#    Updated: 2022/03/29 15:26:43 by jkangas          ###   ########.fr        #
+#    Updated: 2022/04/11 18:27:59 by jkangas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ SRC_DIR = ./src
 OBJ_DIR := ./obj
 
 # Sourcecs and objects
-SRC := main.c
+SRC := main.c error.c map_reader.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

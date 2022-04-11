@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/01 14:15:17 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/11 18:39:52 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,9 @@
 
 #include <math.h>
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
 #include "../libft/libft.h"
 
 typedef struct s_coord
@@ -35,5 +38,7 @@ typedef struct s_program
 
 int		rgb_to_int(double r, double g, double b);
 int		mouse_hook(int button, int x, int y, t_program *param);
+int		error(char *str);
+void	ft_read_map(int fd);
 
 #endif

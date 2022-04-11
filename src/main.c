@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/01 14:58:51 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/11 18:42:45 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	ft_dda(t_coord coord, void *mlx, void *win)
 
 int	mouse_hook(int button, int x, int y, t_program *param)
 {
-	t_coord 	coord;
+	t_coord	coord;
 	coord.x1 = 500;
 	coord.y1 = 500;
 	coord.x2 = x;
@@ -68,14 +68,22 @@ int	mouse_hook(int button, int x, int y, t_program *param)
 	return (0);
 }
 
-int	main()
+int	main(int argc, char **argv)
 {
 	t_program	ptr;
 	int			win_x;
 	int			win_y;
+	int			fd;
 
 	win_x = 1000;
 	win_y = 1000;
+
+	if (argc != 2)
+		error("error: usage ./fdf [MAP_FILE]");
+	fd = open(argv[1], O_RDONLY);
+	if (!fd)
+		error("error opening the file");
+	ft_read_map(fd);
 
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, win_x, win_y, "window");
