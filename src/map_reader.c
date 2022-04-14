@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:44:39 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/13 18:15:41 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 17:07:26 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,13 +71,4 @@ void	ft_read_map(int fd, char *map, t_fdf *ptr)
 	get_rows_cols(fd, ptr);
 	allocate_map(ptr);
 	assign_map(map, ptr);
-	for (int i = 0; i < ptr->rows; i++)
-	{
-		for (int j = 0; j < ptr->cols; j++)
-		{
-			ft_putnbr(ptr->map[i][j]);
-			ft_putchar('\t');
-		}
-		ft_putchar('\n');
-	}
 }

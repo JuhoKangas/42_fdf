@@ -6,18 +6,18 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/13 15:27:31 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 16:54:42 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FILLIT_H
-# define FILLIT_H
+#ifndef FDF_H
+# define FDF_H
 
-#include <math.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <fcntl.h>
-#include "../libft/libft.h"
+# include <math.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <fcntl.h>
+# include "../libft/libft.h"
 
 typedef struct s_fdf
 {

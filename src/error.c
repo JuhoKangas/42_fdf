@@ -6,11 +6,11 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/11 17:18:37 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/11 18:29:03 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 16:55:39 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../includes/fdf.h"
+#include "../includes/fdf.h"
 
 int	error(char *str)
 {
