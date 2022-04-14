@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:44:39 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 17:07:26 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 18:04:10 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ static void	assign_map(char *map, t_fdf *ptr)
 
 	i = 0;
 	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		error("error");
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strsplit(line, ' ');
@@ -66,8 +68,13 @@ static void	assign_map(char *map, t_fdf *ptr)
 	close(fd);
 }
 
-void	ft_read_map(int fd, char *map, t_fdf *ptr)
+void	ft_read_map(char *map, t_fdf *ptr)
 {
+	int	fd;
+
+	fd = open(map, O_RDONLY);
+	if (fd < 0)
+		error("error");
 	get_rows_cols(fd, ptr);
 	allocate_map(ptr);
 	assign_map(map, ptr);

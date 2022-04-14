@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 16:54:42 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 18:00:13 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+
+/*--SCREEN SIZE--*/
+# define SCREEN_W 1000
+# define SCREEN_H 1000
 
 typedef struct s_fdf
 {
@@ -37,7 +41,7 @@ typedef struct s_fdf
 int		rgb_to_int(double r, double g, double b);
 int		mouse_hook(int button, int x, int y, t_fdf *param);
 int		error(char *str);
-void	ft_read_map(int fd, char *map, t_fdf *ptr);
+void	ft_read_map(char *map, t_fdf *ptr);
 void	ft_init_map(t_fdf *ptr);
 
 #endif
