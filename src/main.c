@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/11 18:42:45 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/12 16:19:35 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int rgb_to_int(double r, double g, double b)
     return (color);
 }
 
-void	ft_dda(t_coord coord, void *mlx, void *win)
+void	ft_dda(t_fdf *fdf, void *mlx, void *win)
 {
 	int 	steps;
 	float	x_incr;
@@ -30,19 +30,19 @@ void	ft_dda(t_coord coord, void *mlx, void *win)
 	float	x;
 	float	y;
 
-	coord.delta_x = coord.x2 - coord.x1;
-	coord.delta_y = coord.y2 - coord.y1;
+	fdf->delta_x = fdf->x2 - fdf->x1;
+	fdf->delta_y = fdf->y2 - fdf->y1;
 
-	if (ft_abs(coord.delta_x) > ft_abs(coord.delta_y))
-		steps = fabs(coord.delta_x);
+	if (ft_abs(fdf->delta_x) > ft_abs(fdf->delta_y))
+		steps = fabs(fdf->delta_x);
 	else
-		steps = fabs(coord.delta_y);
+		steps = fabs(fdf->delta_y);
 	
-	x_incr = coord.delta_x / (float) steps;
-	y_incr = coord.delta_y / (float) steps;
+	x_incr = fdf->delta_x / (float) steps;
+	y_incr = fdf->delta_y / (float) steps;
 
-	x = coord.x1;
-	y = coord.y1;
+	x = fdf->x1;
+	y = fdf->y1;
 
 	while (steps)
 	{
@@ -53,15 +53,14 @@ void	ft_dda(t_coord coord, void *mlx, void *win)
 	}
 }
 
-int	mouse_hook(int button, int x, int y, t_program *param)
+int	mouse_hook(int button, int x, int y, t_fdf *param)
 {
-	t_coord	coord;
-	coord.x1 = 500;
-	coord.y1 = 500;
-	coord.x2 = x;
-	coord.y2 = y;
+	param->x1 = 500;
+	param->y1 = 500;
+	param->x2 = x;
+	param->y2 = y;
 
-	ft_dda(coord, param->mlx, param->win);
+	ft_dda(param, param->mlx, param->win);
 
 	(void)button;
 
@@ -70,7 +69,7 @@ int	mouse_hook(int button, int x, int y, t_program *param)
 
 int	main(int argc, char **argv)
 {
-	t_program	ptr;
+	t_fdf		ptr;
 	int			win_x;
 	int			win_y;
 	int			fd;
@@ -81,9 +80,9 @@ int	main(int argc, char **argv)
 	if (argc != 2)
 		error("error: usage ./fdf [MAP_FILE]");
 	fd = open(argv[1], O_RDONLY);
-	if (!fd)
-		error("error opening the file");
-	ft_read_map(fd);
+	if (fd < 0)
+		error("error");
+	ft_read_map(fd, argv[1], &ptr);
 
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, win_x, win_y, "window");

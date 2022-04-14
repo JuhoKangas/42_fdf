@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/11 18:39:52 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/13 15:27:31 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,30 +15,29 @@
 
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <unistd.h>
 #include <fcntl.h>
 #include "../libft/libft.h"
 
-typedef struct s_coord
+typedef struct s_fdf
 {
+	int		**map;
 	int		x1;
 	int		x2;
 	int		y1;
 	int		y2;
 	float	delta_x;
 	float	delta_y;
-}			t_coord;
-
-typedef struct s_program
-{
 	void	*mlx;
 	void	*win;
-}			t_program;
+	int		rows;
+	int		cols;
+}			t_fdf;
 
 int		rgb_to_int(double r, double g, double b);
-int		mouse_hook(int button, int x, int y, t_program *param);
+int		mouse_hook(int button, int x, int y, t_fdf *param);
 int		error(char *str);
-void	ft_read_map(int fd);
+void	ft_read_map(int fd, char *map, t_fdf *ptr);
+void	ft_init_map(t_fdf *ptr);
 
 #endif
