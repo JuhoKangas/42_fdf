@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:44:39 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 18:04:10 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 18:43:57 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ static void	assign_map(char *map, t_fdf *ptr)
 {
 	char	**tmp;
 	char	*line;
-	int		n;
 	int		i;
+	int		j;
 	int		fd;
 
 	i = 0;
@@ -59,10 +59,10 @@ static void	assign_map(char *map, t_fdf *ptr)
 	while (get_next_line(fd, &line))
 	{
 		tmp = ft_strsplit(line, ' ');
-		n = -1;
-		while (tmp[++n])
-			ptr->map[i][n] = ft_atoi(tmp[n]);
-		ft_free_array((void **)tmp, n);
+		j = -1;
+		while (tmp[++j])
+			ptr->map[i][j] = ft_atoi(tmp[j]);
+		ft_free_array((void **)tmp, j);
 		i++;
 	}
 	close(fd);

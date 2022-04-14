@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 18:00:13 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/14 18:54:38 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,10 @@
 /*--SCREEN SIZE--*/
 # define SCREEN_W 1000
 # define SCREEN_H 1000
+
+/*--GRID SIZE--*/
+# define GRID 50
+# define OFFSET 200
 
 typedef struct s_fdf
 {
@@ -43,5 +47,6 @@ int		mouse_hook(int button, int x, int y, t_fdf *param);
 int		error(char *str);
 void	ft_read_map(char *map, t_fdf *ptr);
 void	ft_init_map(t_fdf *ptr);
+void	ft_draw_map(t_fdf *ptr);
 
 #endif
