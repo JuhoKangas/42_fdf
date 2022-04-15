@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/15 12:11:39 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/15 13:09:09 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,24 @@ static void	ft_draw_line(int x1, int y1, int x2, int y2, t_fdf *ptr)
 
 void	ft_draw_map(t_fdf *ptr)
 {
-	ft_draw_line(100, 100, 200, 200, ptr);
+	int	i;
+	int	j;
+	int	x_temp;
+	int	y_temp;
+
+	j = 0;
+	y_temp = OFFSET;
+	while (j < ptr->rows)
+	{
+		x_temp = OFFSET;
+		i = 0;
+		while (i < ptr->cols)
+		{
+			ft_draw_line(x_temp, y_temp, x_temp + GRID, y_temp, ptr);
+			i++;
+			x_temp += GRID + 1;
+		}
+		j++;
+		y_temp = OFFSET + j * GRID;
+	}
 }
