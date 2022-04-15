@@ -6,12 +6,11 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 19:04:07 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/15 12:11:39 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
-#include "mlx.h"
 
 static void	ft_dda(t_fdf *ptr)
 {

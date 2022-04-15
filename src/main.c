@@ -6,11 +6,10 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 19:08:41 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/15 12:11:36 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"	
 #include "../includes/fdf.h"
 
 int	rgb_to_int(double r, double g, double b)

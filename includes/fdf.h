@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 18:54:38 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/15 12:11:34 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <unistd.h>
 # include <fcntl.h>
 # include "../libft/libft.h"
+# include "mlx.h"
 
 /*--SCREEN SIZE--*/
 # define SCREEN_W 1000
