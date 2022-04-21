@@ -6,11 +6,16 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/15 13:09:09 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/21 14:00:23 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/fdf.h"
+
+// ISOMETRIC ALGORITHMS
+// 30 degrees = 0.523598776 rad
+// ptr->x = (x - y) * cos(30)
+// ptr->y = -z + (x + y) * sin(30)
 
 static void	ft_dda(t_fdf *ptr)
 {
@@ -30,7 +35,7 @@ static void	ft_dda(t_fdf *ptr)
 	y_incr = ptr->delta_y / (float) steps;
 	x = ptr->x1;
 	y = ptr->y1;
-	while (steps)
+	while (steps > -1)
 	{
 		mlx_pixel_put(ptr->mlx, ptr->win, x, y, rgb_to_int(1, 1, 1));
 		x += x_incr;
@@ -62,12 +67,15 @@ void	ft_draw_map(t_fdf *ptr)
 	{
 		x_temp = OFFSET;
 		i = 0;
-		while (i < ptr->cols)
+		while (++i < ptr->cols)
 		{
 			ft_draw_line(x_temp, y_temp, x_temp + GRID, y_temp, ptr);
-			i++;
-			x_temp += GRID + 1;
+			if (j < ptr->rows - 1)
+				ft_draw_line(x_temp, y_temp, x_temp, y_temp + GRID, ptr);
+			x_temp += GRID;
 		}
+		if (j < ptr->rows - 1)
+			ft_draw_line(x_temp, y_temp, x_temp, y_temp + GRID, ptr);
 		j++;
 		y_temp = OFFSET + j * GRID;
 	}
