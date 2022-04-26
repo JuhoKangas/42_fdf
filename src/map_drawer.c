@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/21 14:00:23 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/22 16:55:36 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // ptr->x = (x - y) * cos(30)
 // ptr->y = -z + (x + y) * sin(30)
 
-static void	ft_dda(t_fdf *ptr)
+static void	ft_dda(t_coord line, t_fdf *ptr)
 {
 	int		steps;
 	float	x_incr;
@@ -25,16 +25,16 @@ static void	ft_dda(t_fdf *ptr)
 	float	x;
 	float	y;
 
-	ptr->delta_x = ptr->x2 - ptr->x1;
-	ptr->delta_y = ptr->y2 - ptr->y1;
-	if (ft_abs(ptr->delta_x) > ft_abs(ptr->delta_y))
-		steps = fabs(ptr->delta_x);
+	line.delta_x = line.x2 - line.x1;
+	line.delta_y = line.y2 - line.y1;
+	if (ft_abs(line.delta_x) > ft_abs(line.delta_y))
+		steps = fabs(line.delta_x);
 	else
-		steps = fabs(ptr->delta_y);
-	x_incr = ptr->delta_x / (float) steps;
-	y_incr = ptr->delta_y / (float) steps;
-	x = ptr->x1;
-	y = ptr->y1;
+		steps = fabs(line.delta_y);
+	x_incr = line.delta_x / (float) steps;
+	y_incr = line.delta_y / (float) steps;
+	x = line.x1;
+	y = line.y1;
 	while (steps > -1)
 	{
 		mlx_pixel_put(ptr->mlx, ptr->win, x, y, rgb_to_int(1, 1, 1));
@@ -44,22 +44,36 @@ static void	ft_dda(t_fdf *ptr)
 	}
 }
 
-static void	ft_draw_line(int x1, int y1, int x2, int y2, t_fdf *ptr)
+static t_coord	ft_horizontal_line(int x, int y)
 {
-	ptr->x1 = x1;
-	ptr->x2 = x2;
-	ptr->y1 = y1;
-	ptr->y2 = y2;
+	t_coord	line;
+	
+	line.x1 = x;
+	line.y1 = y;
+	line.x2 = line.x1 + GRID;
+	line.y2 = line.y1;
 
-	ft_dda(ptr);
+	return (line);
+}
+
+static t_coord	ft_vertical_line(int x, int y)
+{
+	t_coord	line;
+	
+	line.x1 = x;
+	line.y1 = y;
+	line.x2 = line.x1;
+	line.y2 = line.y1 + GRID;
+
+	return (line);
 }
 
 void	ft_draw_map(t_fdf *ptr)
 {
-	int	i;
-	int	j;
-	int	x_temp;
-	int	y_temp;
+	int		i;
+	int		j;
+	int		x_temp;
+	int		y_temp;
 
 	j = 0;
 	y_temp = OFFSET;
@@ -67,15 +81,14 @@ void	ft_draw_map(t_fdf *ptr)
 	{
 		x_temp = OFFSET;
 		i = 0;
-		while (++i < ptr->cols)
+		while (i < ptr->cols)
 		{
-			ft_draw_line(x_temp, y_temp, x_temp + GRID, y_temp, ptr);
+			if (i++ < ptr->cols - 1)
+				ft_dda(ft_horizontal_line(x_temp, y_temp), ptr);
 			if (j < ptr->rows - 1)
-				ft_draw_line(x_temp, y_temp, x_temp, y_temp + GRID, ptr);
+				ft_dda(ft_vertical_line(x_temp, y_temp), ptr);
 			x_temp += GRID;
 		}
-		if (j < ptr->rows - 1)
-			ft_draw_line(x_temp, y_temp, x_temp, y_temp + GRID, ptr);
 		j++;
 		y_temp = OFFSET + j * GRID;
 	}
