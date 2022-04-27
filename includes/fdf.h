@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/22 16:41:26 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/27 15:54:24 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@
 # include "mlx.h"
 
 /*--SCREEN SIZE--*/
-# define SCREEN_W 1000
-# define SCREEN_H 1000
+# define SCREEN_W 1920
+# define SCREEN_H 1080
 
 /*--GRID SIZE--*/
 # define GRID 50
-# define OFFSET 200
+# define OFFSET 400
 
 typedef struct s_fdf
 {
@@ -35,6 +35,7 @@ typedef struct s_fdf
 	void	*win;
 	int		rows;
 	int		cols;
+	int		view;
 }			t_fdf;
 
 typedef struct s_coord

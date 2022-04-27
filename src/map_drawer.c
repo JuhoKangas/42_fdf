@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/22 16:55:36 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/27 15:56:37 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,52 +44,78 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 	}
 }
 
-static t_coord	ft_horizontal_line(int x, int y)
+static void	isometric(int *x, int *y, int z)
+{
+	*x = (*x - *y) * cos(0.523598776);
+	*y = (*x + *y) * sin(0.523598776) - (z * 4);
+}
+
+static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
 {
 	t_coord	line;
-	
-	line.x1 = x;
-	line.y1 = y;
-	line.x2 = line.x1 + GRID;
-	line.y2 = line.y1;
+	int		temp_x;
+	int		temp_y;
 
+	temp_x = x;
+	temp_y = y;
+	temp_x = x * GRID;
+	temp_y = y * GRID;
+	if (ptr->view == 1)
+		isometric(&temp_x, &temp_y, ptr->map[y][x]);
+	line.x1 = temp_x + OFFSET;
+	line.y1 = temp_y + OFFSET;
+	temp_x = x * GRID;
+	temp_y = y * GRID;
+	temp_x += GRID;
+	if (ptr->view == 1)
+		isometric(&temp_x, &temp_y, ptr->map[y][x + 1]);
+	line.x2 = temp_x + OFFSET;
+	line.y2 = temp_y + OFFSET;
 	return (line);
 }
 
-static t_coord	ft_vertical_line(int x, int y)
+static t_coord	ft_vertical_line(int x, int y, t_fdf *ptr)
 {
 	t_coord	line;
-	
-	line.x1 = x;
-	line.y1 = y;
-	line.x2 = line.x1;
-	line.y2 = line.y1 + GRID;
+	int		temp_x;
+	int		temp_y;
 
+	temp_x = x;
+	temp_y = y;
+	temp_x = x * GRID;
+	temp_y = y * GRID;
+	if (ptr->view == 1)
+		isometric(&temp_x, &temp_y, ptr->map[y][x]);
+	line.x1 = temp_x + OFFSET;
+	line.y1 = temp_y + OFFSET;
+	temp_x = x * GRID;
+	temp_y = y * GRID;
+	temp_y += GRID;
+	if (ptr->view == 1)
+		isometric(&temp_x, &temp_y, ptr->map[y + 1][x]);
+	line.x2 = temp_x + OFFSET;
+	line.y2 = temp_y + OFFSET;
 	return (line);
 }
 
 void	ft_draw_map(t_fdf *ptr)
 {
-	int		i;
-	int		j;
-	int		x_temp;
-	int		y_temp;
+	int		x;
+	int		y;
 
-	j = 0;
-	y_temp = OFFSET;
-	while (j < ptr->rows)
+	ptr->view = 1;
+	y = 0;
+	while (y < ptr->rows)
 	{
-		x_temp = OFFSET;
-		i = 0;
-		while (i < ptr->cols)
+		x = 0;
+		while (x < ptr->cols)
 		{
-			if (i++ < ptr->cols - 1)
-				ft_dda(ft_horizontal_line(x_temp, y_temp), ptr);
-			if (j < ptr->rows - 1)
-				ft_dda(ft_vertical_line(x_temp, y_temp), ptr);
-			x_temp += GRID;
+			if (x < ptr->cols - 1)
+				ft_dda(ft_horizontal_line(x, y, ptr), ptr);
+			if (y < ptr->rows - 1)
+				ft_dda(ft_vertical_line(x, y, ptr), ptr);
+			x++;
 		}
-		j++;
-		y_temp = OFFSET + j * GRID;
+		y++;
 	}
 }
