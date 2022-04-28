@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 14:50:02 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 15:45:25 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,6 @@ typedef struct s_coord
 	float	delta_y;
 }			t_coord;
 
-int		rgb_to_int(double r, double g, double b);
-int		mouse_hook(int button, int x, int y, t_fdf *param);
 int		key_hook(int key, t_fdf *data);
 int		error(char *str);
 void	ft_read_map(char *map, t_fdf *ptr);
@@ -62,7 +60,7 @@ void	ft_init_map(t_fdf *ptr);
 void	ft_draw_map(t_fdf *ptr);
 
 /*--UTILITY FUNCTIONS--*/
-void	clear_screen(t_fdf *ptr);
+int		rgb_to_int(double r, double g, double b);
 void	init_struct(t_fdf *data);
 
 #endif
