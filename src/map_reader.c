@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:44:39 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/14 18:43:57 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 20:20:33 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,14 @@ static void	get_rows_cols(int fd, t_fdf *ptr)
 	wordcount = ft_wordcount(line, ' ');
 	ptr->cols = wordcount;
 	rows = 1;
+	free(line);
 	while (get_next_line(fd, &line))
+	{
+		if (wordcount != ft_wordcount(line, ' '))
+			error("Error: Invalid map!");
 		rows++;
+		free(line);
+	}
 	ptr->rows = rows;
 	close(fd);
 }
@@ -35,7 +41,7 @@ static void	allocate_map(t_fdf *ptr)
 	i = -1;
 	ptr->map = (int **)malloc(sizeof(int *) * ptr->rows);
 	if (!(ptr->map))
-		error("error");
+		error("Error: Error when allocating memory for the map");
 	while (++i <= ptr->rows)
 	{
 		ptr->map[i] = (int *)malloc(sizeof(int) * ptr->cols);
@@ -63,6 +69,7 @@ static void	assign_map(char *map, t_fdf *ptr)
 		while (tmp[++j])
 			ptr->map[i][j] = ft_atoi(tmp[j]);
 		ft_free_array((void **)tmp, j);
+		free(line);
 		i++;
 	}
 	close(fd);
