@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/27 16:03:04 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 14:05:40 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 static void	isometric(int *x, int *y, int z)
 {
 	*x = (*x - *y) * cos(0.523598776);
-	*y = (*x + *y) * sin(0.523598776) - (z * 4);
+	*y = (*x + *y) * sin(0.523598776) - (z * 5);
 }
 
 static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
@@ -58,19 +58,19 @@ static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
 
 	temp_x = x;
 	temp_y = y;
-	temp_x = x * GRID;
-	temp_y = y * GRID;
+	temp_x = x * ptr->zoom;
+	temp_y = y * ptr->zoom;
 	if (ptr->view == 1)
 		isometric(&temp_x, &temp_y, ptr->map[y][x]);
-	line.x1 = temp_x + OFFSET;
-	line.y1 = temp_y + OFFSET;
-	temp_x = x * GRID;
-	temp_y = y * GRID;
-	temp_x += GRID;
+	line.x1 = temp_x + ptr->x_off;
+	line.y1 = temp_y + ptr->y_off;
+	temp_x = x * ptr->zoom;
+	temp_y = y * ptr->zoom;
+	temp_x += ptr->zoom;
 	if (ptr->view == 1)
 		isometric(&temp_x, &temp_y, ptr->map[y][x + 1]);
-	line.x2 = temp_x + OFFSET;
-	line.y2 = temp_y + OFFSET;
+	line.x2 = temp_x + ptr->x_off;
+	line.y2 = temp_y + ptr->y_off;
 	return (line);
 }
 
@@ -82,19 +82,19 @@ static t_coord	ft_vertical_line(int x, int y, t_fdf *ptr)
 
 	temp_x = x;
 	temp_y = y;
-	temp_x = x * GRID;
-	temp_y = y * GRID;
+	temp_x = x * ptr->zoom;
+	temp_y = y * ptr->zoom;
 	if (ptr->view == 1)
 		isometric(&temp_x, &temp_y, ptr->map[y][x]);
-	line.x1 = temp_x + OFFSET;
-	line.y1 = temp_y + OFFSET;
-	temp_x = x * GRID;
-	temp_y = y * GRID;
-	temp_y += GRID;
+	line.x1 = temp_x + ptr->x_off;
+	line.y1 = temp_y + ptr->y_off;
+	temp_x = x * ptr->zoom;
+	temp_y = y * ptr->zoom;
+	temp_y += ptr->zoom;
 	if (ptr->view == 1)
 		isometric(&temp_x, &temp_y, ptr->map[y + 1][x]);
-	line.x2 = temp_x + OFFSET;
-	line.y2 = temp_y + OFFSET;
+	line.x2 = temp_x + ptr->x_off;
+	line.y2 = temp_y + ptr->y_off;
 	return (line);
 }
 
@@ -104,6 +104,9 @@ void	ft_draw_map(t_fdf *ptr)
 	int		y;
 
 	ptr->view = 1;
+	ptr->x_off = 600;
+	ptr->y_off = 200;
+	ptr->zoom = 70;
 	y = 0;
 	while (y < ptr->rows)
 	{

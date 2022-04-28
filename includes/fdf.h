@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/27 15:54:24 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 14:06:33 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,12 @@
 # define SCREEN_W 1920
 # define SCREEN_H 1080
 
-/*--GRID SIZE--*/
-# define GRID 50
-# define OFFSET 400
-
 typedef struct s_fdf
 {
 	int		**map;
+	int		x_off;
+	int		y_off;
+	int		zoom;
 	void	*mlx;
 	void	*win;
 	int		rows;

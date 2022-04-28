@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/22 16:41:31 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 13:51:57 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,4 @@ int	main(int argc, char **argv)
 	// mlx_mouse_hook(ptr.win, mouse_hook, &ptr);
 	ft_draw_map(&ptr);
 	mlx_loop(ptr.mlx);
-
 }
