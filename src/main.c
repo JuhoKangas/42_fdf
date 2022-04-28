@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/29 11:23:07 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 13:51:57 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 14:49:08 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,8 +42,10 @@ int	main(int argc, char **argv)
 		error("error: usage ./fdf [MAP_FILE]");
 	ptr.mlx = mlx_init();
 	ptr.win = mlx_new_window(ptr.mlx, SCREEN_W, SCREEN_H, "window");
+	init_struct(&ptr);
 	ft_read_map(argv[1], &ptr);
 	// mlx_mouse_hook(ptr.win, mouse_hook, &ptr);
+	mlx_key_hook(ptr.win, key_hook, &ptr);
 	ft_draw_map(&ptr);
 	mlx_loop(ptr.mlx);
 }

@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 14:05:40 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 14:48:46 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,6 @@ void	ft_draw_map(t_fdf *ptr)
 	int		x;
 	int		y;
 
-	ptr->view = 1;
-	ptr->x_off = 600;
-	ptr->y_off = 200;
-	ptr->zoom = 70;
 	y = 0;
 	while (y < ptr->rows)
 	{

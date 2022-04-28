@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 14:06:33 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/04/28 14:50:02 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,12 @@
 /*--SCREEN SIZE--*/
 # define SCREEN_W 1920
 # define SCREEN_H 1080
+
+/*--KEY CONTROLS--*/
+# define UP 126
+# define DOWN 125
+# define LEFT 123
+# define RIGHT 124
 
 typedef struct s_fdf
 {
@@ -49,9 +55,14 @@ typedef struct s_coord
 
 int		rgb_to_int(double r, double g, double b);
 int		mouse_hook(int button, int x, int y, t_fdf *param);
+int		key_hook(int key, t_fdf *data);
 int		error(char *str);
 void	ft_read_map(char *map, t_fdf *ptr);
 void	ft_init_map(t_fdf *ptr);
 void	ft_draw_map(t_fdf *ptr);
+
+/*--UTILITY FUNCTIONS--*/
+void	clear_screen(t_fdf *ptr);
+void	init_struct(t_fdf *data);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/29 14:40:43 by jkangas           #+#    #+#              #
-#    Updated: 2022/04/14 18:29:22 by jkangas          ###   ########.fr        #
+#    Updated: 2022/04/28 15:27:31 by jkangas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,13 +18,14 @@ SRC_DIR = ./src
 OBJ_DIR := ./obj
 
 # Sourcecs and objects
-SRC := main.c error.c map_reader.c map_drawer.c
+SRC := main.c error.c map_reader.c map_drawer.c key_controller.c \
+		utilities.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror
+CFLAGS := -Wall -Wextra -Werror -O3
 
 # Linking
 LINKS := -I libft -L libft \
