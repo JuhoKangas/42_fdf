@@ -6,7 +6,7 @@
 #    By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/29 14:40:43 by jkangas           #+#    #+#              #
-#    Updated: 2022/04/28 15:27:31 by jkangas          ###   ########.fr        #
+#    Updated: 2022/04/29 15:50:59 by jkangas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 
 # Compiler and flags
 CC := gcc
-CFLAGS := -Wall -Wextra -Werror -O3
+CFLAGS := -Wall -Wextra -Werror
 
 # Linking
 LINKS := -I libft -L libft \
@@ -40,14 +40,19 @@ END = \033[0m
 RM := /bin/rm -f
 RM_DIR := /bin/rm -rf
 
-.PHONY: all clean fclean re
+.PHONY: all clean fclean debug re
 
 all: $(NAME)
 
 $(NAME): $(OBJ)
 	@$(MAKE) -C libft
-	@$(CC) $(CFLAGS) $(OBJ) $(LINKS) -o $@
+	@$(CC) $(CFLAGS) $(OBJ) $(LINKS) -o $@ -O3
 	@echo "$(MSG)Done!$(END)"
+
+debug: $(OBJ)
+	@$(MAKE) -C libft
+	@$(CC) -g $(CFLAGS) $(OBJ) $(LINKS) -o $@ -O0
+	@echo "$(MSG)Done diddly do the debug!$(END)"
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.c
 	@mkdir -p $(OBJ_DIR)
