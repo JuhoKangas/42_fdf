@@ -6,7 +6,7 @@
 #    By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/03/29 14:40:43 by jkangas           #+#    #+#              #
-#    Updated: 2022/04/29 15:50:59 by jkangas          ###   ########.fr        #
+#    Updated: 2022/05/02 14:19:15 by jkangas          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ OBJ_DIR := ./obj
 
 # Sourcecs and objects
 SRC := main.c error.c map_reader.c map_drawer.c key_controller.c \
-		utilities.c
+		utilities.c ui_controller.c
 SRCS := $(addprefix $(SRC_DIR)/, $(SRC))
 OBJ := $(addprefix $(OBJ_DIR)/, $(SRC:.c=.o))
 

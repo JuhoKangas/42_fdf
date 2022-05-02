@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:07:19 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 19:43:20 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 14:23:36 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ static void	move_fdf(int key, t_fdf *data)
 	if (key == RIGHT)
 		data->x_off += 50;
 	mlx_clear_window(data->mlx, data->win);
+	display_ui(data);
 	ft_draw_map(data);
 }
 
@@ -41,6 +42,7 @@ static void	change_view(t_fdf *data)
 		data->y_off = 200;
 	}
 	mlx_clear_window(data->mlx, data->win);
+	display_ui(data);
 	ft_draw_map(data);
 }
 
@@ -52,6 +54,7 @@ static void	zoom_view(int key, t_fdf *data)
 		if (data->zoom > 10)
 			data->zoom -= 10;
 	mlx_clear_window(data->mlx, data->win);
+	display_ui(data);
 	ft_draw_map(data);
 }
 

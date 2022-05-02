@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 19:41:28 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 14:22:08 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ int		error(char *str);
 void	ft_read_map(char *map, t_fdf *ptr);
 void	ft_init_map(t_fdf *ptr);
 void	ft_draw_map(t_fdf *ptr);
+void	display_ui(t_fdf *data);
 
 /*--UTILITY FUNCTIONS--*/
 int		rgb_to_int(double r, double g, double b);
