@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 19:02:35 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 19:58:14 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ typedef struct s_fdf
 	int		view;
 	float	angle;
 	int		color;
+	float	elevation;
 }			t_fdf;
 
 typedef struct s_coord
@@ -72,5 +73,6 @@ void	zoom_view(int key, t_fdf *data);
 void	change_view(t_fdf *data);
 void	change_color(t_fdf *data);
 void	move_fdf(int key, t_fdf *data);
+void	change_elevation(int key, t_fdf *data);
 
 #endif

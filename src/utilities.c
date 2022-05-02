@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:28:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 19:09:15 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 19:59:37 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_struct(t_fdf *data)
 	data->y_off = 200;
 	data->view = 0;
 	data->color = rgb_to_int(1, 1, 1);
+	data->elevation = 1.0;
 }
 
 int	rgb_to_int(double r, double g, double b)
@@ -44,5 +45,7 @@ int	key_hook(int key, t_fdf *data)
 		exit_fdf(data);
 	if (key == 8)
 		change_color(data);
+	if (key == 30 || key == 33)
+		change_elevation(key, data);
 	return (0);
 }

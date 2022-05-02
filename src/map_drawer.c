@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 19:30:17 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 19:51:54 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 static void	isometric(int *x, int *y, int z, t_fdf *ptr)
 {
 	*x = (*x - *y) * cos(ptr->angle);
-	*y = (*x + *y) * sin(ptr->angle) - (z * ptr->zoom);
+	*y = (*x + *y) * sin(ptr->angle) - (z * ptr->zoom * ptr->elevation);
 }
 
 static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
