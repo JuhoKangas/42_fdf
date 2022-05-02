@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:07:19 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 14:23:36 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 18:31:26 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ int	key_hook(int key, t_fdf *data)
 {
 	if (key == UP || key == DOWN || key == LEFT || key == RIGHT)
 		move_fdf(key, data);
-	if (key == 49)	
+	if (key == 49)
 		change_view(data);
 	if (key == 24 || key == 27)
 		zoom_view(key, data);
