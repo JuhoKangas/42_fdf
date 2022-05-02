@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 18:57:56 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 19:30:17 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,8 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 	y = line.y1;
 	while (steps > -1)
 	{
-		mlx_pixel_put(ptr->mlx, ptr->win, x, y, ptr->color);
+		if (x > 0 && x < SCREEN_W && y > 0 && y < SCREEN_H)
+			mlx_pixel_put(ptr->mlx, ptr->win, x, y, ptr->color);
 		x += x_incr;
 		y += y_incr;
 		steps--;
