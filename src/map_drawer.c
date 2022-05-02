@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 19:44:17 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 17:29:08 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 	}
 }
 
-static void	isometric(int *x, int *y, int z)
+static void	isometric(int *x, int *y, int z, t_fdf *ptr)
 {
 	*x = (*x - *y) * cos(0.523598776);
-	*y = (*x + *y) * sin(0.523598776) - (z * 5);
+	*y = (*x + *y) * sin(0.523598776) - (z * ptr->zoom);
 }
 
 static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
@@ -61,14 +61,14 @@ static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
 	if (ptr->view == 1)
-		isometric(&temp_x, &temp_y, ptr->map[y][x]);
+		isometric(&temp_x, &temp_y, ptr->map[y][x], ptr);
 	line.x1 = temp_x + ptr->x_off;
 	line.y1 = temp_y + ptr->y_off;
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
 	temp_x += ptr->zoom;
 	if (ptr->view == 1)
-		isometric(&temp_x, &temp_y, ptr->map[y][x + 1]);
+		isometric(&temp_x, &temp_y, ptr->map[y][x + 1], ptr);
 	line.x2 = temp_x + ptr->x_off;
 	line.y2 = temp_y + ptr->y_off;
 	return (line);
@@ -85,14 +85,14 @@ static t_coord	ft_vertical_line(int x, int y, t_fdf *ptr)
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
 	if (ptr->view == 1)
-		isometric(&temp_x, &temp_y, ptr->map[y][x]);
+		isometric(&temp_x, &temp_y, ptr->map[y][x], ptr);
 	line.x1 = temp_x + ptr->x_off;
 	line.y1 = temp_y + ptr->y_off;
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
 	temp_y += ptr->zoom;
 	if (ptr->view == 1)
-		isometric(&temp_x, &temp_y, ptr->map[y + 1][x]);
+		isometric(&temp_x, &temp_y, ptr->map[y + 1][x], ptr);
 	line.x2 = temp_x + ptr->x_off;
 	line.y2 = temp_y + ptr->y_off;
 	return (line);

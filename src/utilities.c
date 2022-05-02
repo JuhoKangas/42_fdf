@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/28 14:28:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 15:44:48 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 18:02:09 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	init_struct(t_fdf *data)
 {
-	data->zoom = 70;
+	data->zoom = 30;
 	data->x_off = 700;
 	data->y_off = 200;
 	data->view = 1;

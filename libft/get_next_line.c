@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jkangas <jkangas@student.hive.fi>          +#+  +:+       +#+        */
+/*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/13 17:02:30 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/11 17:46:08 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 18:26:16 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,8 @@ static int	check_data(const int fd, char **line, ssize_t bytes, char **str)
 {
 	if (bytes < 0)
 	{
-		ft_memdel((void **)str);
+		if (str[fd])
+			ft_memdel((void **)str);
 		return (-1);
 	}
 	else if (bytes == 0 && str[fd] == NULL)

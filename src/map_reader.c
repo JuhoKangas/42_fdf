@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:44:39 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 11:51:59 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 18:26:54 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,11 @@ static void	get_rows_cols(int fd, t_fdf *ptr)
 	int		wordcount;
 	int		rows;
 
-	get_next_line(fd, &line);
+	if (get_next_line(fd, &line) == -1)
+		error("Error reading the file");
 	wordcount = ft_wordcount(line, ' ');
+	if (wordcount == 0)
+		error("Error reading the file");
 	ptr->cols = wordcount;
 	rows = 1;
 	free(line);
@@ -81,7 +84,7 @@ void	ft_read_map(char *map, t_fdf *ptr)
 
 	fd = open(map, O_RDONLY);
 	if (fd < 0)
-		error("error");
+		error("Error opening the file");
 	get_rows_cols(fd, ptr);
 	allocate_map(ptr);
 	assign_map(map, ptr);
