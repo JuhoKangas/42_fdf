@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/14 18:29:29 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 17:29:08 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 18:57:56 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 	y = line.y1;
 	while (steps > -1)
 	{
-		mlx_pixel_put(ptr->mlx, ptr->win, x, y, rgb_to_int(1, 1, 1));
+		mlx_pixel_put(ptr->mlx, ptr->win, x, y, ptr->color);
 		x += x_incr;
 		y += y_incr;
 		steps--;
@@ -46,8 +46,8 @@ static void	ft_dda(t_coord line, t_fdf *ptr)
 
 static void	isometric(int *x, int *y, int z, t_fdf *ptr)
 {
-	*x = (*x - *y) * cos(0.523598776);
-	*y = (*x + *y) * sin(0.523598776) - (z * ptr->zoom);
+	*x = (*x - *y) * cos(ptr->angle);
+	*y = (*x + *y) * sin(ptr->angle) - (z * ptr->zoom);
 }
 
 static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
@@ -60,14 +60,14 @@ static t_coord	ft_horizontal_line(int x, int y, t_fdf *ptr)
 	temp_y = y;
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
-	if (ptr->view == 1)
+	if (ptr->view != 0)
 		isometric(&temp_x, &temp_y, ptr->map[y][x], ptr);
 	line.x1 = temp_x + ptr->x_off;
 	line.y1 = temp_y + ptr->y_off;
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
 	temp_x += ptr->zoom;
-	if (ptr->view == 1)
+	if (ptr->view != 0)
 		isometric(&temp_x, &temp_y, ptr->map[y][x + 1], ptr);
 	line.x2 = temp_x + ptr->x_off;
 	line.y2 = temp_y + ptr->y_off;
@@ -84,14 +84,14 @@ static t_coord	ft_vertical_line(int x, int y, t_fdf *ptr)
 	temp_y = y;
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
-	if (ptr->view == 1)
+	if (ptr->view != 0)
 		isometric(&temp_x, &temp_y, ptr->map[y][x], ptr);
 	line.x1 = temp_x + ptr->x_off;
 	line.y1 = temp_y + ptr->y_off;
 	temp_x = x * ptr->zoom;
 	temp_y = y * ptr->zoom;
 	temp_y += ptr->zoom;
-	if (ptr->view == 1)
+	if (ptr->view != 0)
 		isometric(&temp_x, &temp_y, ptr->map[y + 1][x], ptr);
 	line.x2 = temp_x + ptr->x_off;
 	line.y2 = temp_y + ptr->y_off;

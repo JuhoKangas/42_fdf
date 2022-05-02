@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/31 11:13:27 by jkangas           #+#    #+#             */
-/*   Updated: 2022/05/02 14:22:08 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 19:02:35 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,8 @@ typedef struct s_fdf
 	int		rows;
 	int		cols;
 	int		view;
+	float	angle;
+	int		color;
 }			t_fdf;
 
 typedef struct s_coord
@@ -53,7 +55,6 @@ typedef struct s_coord
 	float	delta_y;
 }			t_coord;
 
-int		key_hook(int key, t_fdf *data);
 int		error(char *str);
 void	ft_read_map(char *map, t_fdf *ptr);
 void	ft_init_map(t_fdf *ptr);
@@ -61,7 +62,15 @@ void	ft_draw_map(t_fdf *ptr);
 void	display_ui(t_fdf *data);
 
 /*--UTILITY FUNCTIONS--*/
+int		key_hook(int key, t_fdf *data);
 int		rgb_to_int(double r, double g, double b);
 void	init_struct(t_fdf *data);
+
+/*--KEY EVENTS--*/
+void	exit_fdf(t_fdf *data);
+void	zoom_view(int key, t_fdf *data);
+void	change_view(t_fdf *data);
+void	change_color(t_fdf *data);
+void	move_fdf(int key, t_fdf *data);
 
 #endif
