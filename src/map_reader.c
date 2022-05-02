@@ -6,7 +6,7 @@
 /*   By: jkangas <jkangas@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/06 15:44:39 by jkangas           #+#    #+#             */
-/*   Updated: 2022/04/28 20:20:33 by jkangas          ###   ########.fr       */
+/*   Updated: 2022/05/02 11:51:59 by jkangas          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ static void	allocate_map(t_fdf *ptr)
 	ptr->map = (int **)malloc(sizeof(int *) * ptr->rows);
 	if (!(ptr->map))
 		error("Error: Error when allocating memory for the map");
-	while (++i <= ptr->rows)
+	while (++i < ptr->rows)
 	{
 		ptr->map[i] = (int *)malloc(sizeof(int) * ptr->cols);
 		if (!(ptr->map[i]))
